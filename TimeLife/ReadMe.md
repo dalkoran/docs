@@ -4,6 +4,7 @@ This project was partly inspired by a desire to have another go at writing an op
 ## Spencen.TimeLife.Core
 Platform independent model for the timeline.
 At the core is the `ITimelineEvent` interface:
+
 ```csharp
     public interface ITimelineEvent
     {
@@ -14,6 +15,7 @@ At the core is the `ITimelineEvent` interface:
 ```
 Also the `ITimelineSource` interface which is used to allow optimized access into the underlying collection of events. 
 The implementation of this interface is built with performance in mind, with the assumption that we may have 100,000+ `ITimelineEvent`s.
+
 ```csharp
     public interface ITimelineSource
     {
@@ -69,11 +71,13 @@ shows as many as will fit within the vertical space allocated to the control.
 ### TimelinePanel
 * The TimelineEvents are shown using a custom templated `ItemsControl` that uses the `TimelinePanel`
 as its ItemsHost.
+
 ```xml
 <controls:TimelinePanel x:Name="Panel"
     TimeScale="{StaticResource TimeScale}"
     IsItemsHost="True"
 ```
+
 * The control is designed to layout child elements based on a value that they expose via an attached property
 (not disimilar to the attached properties used by Grid or Canvas).
 * Important to note that the children are rendered based on the supplied ItemTemplate or ItemTemplateSelctor
