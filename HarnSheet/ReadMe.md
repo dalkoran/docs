@@ -240,7 +240,7 @@ the left side. Each module is a separately purchasable item available from Colum
 shown here are a subset of those I own (either as PDF or PDF and hard-copy). Double-clicking on a module will open it in the system's default PDF viewer.
 
 The second feature is the map itself. The map starts by displaying the continent of Lythia between latitude
-of 60° north to 20° north on the world of Kethira. The map can be zoomed, and then also panned.
+of 20 to 60 degress north on the world of Kethira. The map can be zoomed, and then also panned.
 
 Tharda is a Republic on the remote island of Harn, off the west coast of Lythia.
 
