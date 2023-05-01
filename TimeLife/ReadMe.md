@@ -32,8 +32,7 @@ Used to load timeline events from a data-source(MySQL database). The database wa
 These media references can then be used as a datasource by the timeline.
 
 ## Spencen.TimeLine.Client.WPF
-A standalone WPF application that uses two custom built controls to render a timeline. The application is intended as a test harness for the actual controls, there is very little
-actual functionality/use.
+A standalone WPF application that uses two custom built controls to render a timeline. The application is intended as a test harness for the actual controls, there is very little actual functionality/use.
 
 Showing timeline events with a duration. The timeline shows three time scales of increasing fidelity. 
 In this case we have centuries, decades and years as we are showing a period of 20 years.
@@ -94,6 +93,7 @@ to achieve the desired behavior.
         * __ConnectorBrush__ - brush used to render lines
         * __ConnectorThickness__ - thickness of render lines
         * __ConnectorLead__ - allows for splined connector lines, set a lead of zero for a vertical connector
+
 ## Dependencies
 These project have a dependency on:
 * __Spencen.Common__
