@@ -255,9 +255,6 @@ The bottom of the map shows the top/left and bottom/right coordinates in latitud
 It's worth nothings that he map surface isn't constrained to showing HarnWorld maps. Any maps for which
 map layers and tiles can be created would work equally well.
 
-<details>
-<summary>A portion of the code used to define the Lythia map:</summary>
-
 ```csharp
 public HarnMap(IEnumerable<IMapLocation>? locations = null)
     : base(new MapRectangle(new MapCoordinate(0, -60), new MapCoordinate(56, -20)), locations ?? Enumerable.Empty<IMapLocation>())
@@ -303,7 +300,6 @@ public HarnMap(IEnumerable<IMapLocation>? locations = null)
     atlasMapTilesLayer.MapTiles = atlasMapTiles;
     this.Layers.Add(atlasMapTilesLayer);
 ```
-</details>
 
 #### Map Tiling/Layers
 The map is constructed of a number of layers. Each layer represents a specific zoom range and has associated
