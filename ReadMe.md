@@ -10,13 +10,13 @@ are incomplete having served their purpose (tooling or learning).
 ## Private Repos
 These repos are private because the contain copyrighted materials, and/or personal information.
 
-[HarnSheet](HarnSheet/ReadMe.md)
-[Cluedo Companion App](CluedoCompanion/ReadMe.md)
-[TimeLife](TimeLife/ReadMe.md)
-[TomTomPlaylist](TomTomPlaylist/ReadMe.md)
+* [HarnSheet](HarnSheet/ReadMe.md)
+* [Cluedo Companion App](CluedoCompanion/ReadMe.md)
+* [TimeLife](TimeLife/ReadMe.md)
+* [TomTomPlaylist](TomTomPlaylist/ReadMe.md)
 
 ## Public Repos
 These are generic tools/libraries.
 
-[Dv Capture Tags](https://dalkoran.github.io/DvCaptureTag/)
-[Calendar - Relative Dates](https://github.com/dalkoran/CalendarTest)
+* [Dv Capture Tags](https://dalkoran.github.io/DvCaptureTag/)
+* [Calendar - Relative Dates](https://github.com/dalkoran/CalendarTest)
