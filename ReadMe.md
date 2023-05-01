@@ -19,5 +19,5 @@ These repos are private because they contain copyrighted materials, and/or perso
 ## Public Repos
 These are generic tools/libraries.
 
-* [Dv Capture Tags](https://dalkoran.github.io/DvCaptureTag)
+* [Dv Capture Tags](https://github.com/dalkoran/DvCaptureTag)
 * [Calendar - Relative Dates](https://github.com/dalkoran/CalendarTest)
