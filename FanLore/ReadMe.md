@@ -1,4 +1,6 @@
-﻿# FanLore
+﻿<image src="/docs/AI_Logo.png" height="150"/>
+
+# FanLore
 by Nigel Spencer 2024
 
 ## Getting Started
@@ -23,7 +25,7 @@ The most common use case would be to generate an image from a Hârn atlas map th
 You could do this yourself, but using Ghostscript in FanLore will make this process much easier.
 
 ### How do I install Ghostscript?
-You can learn more about Ghostscript and download and install it from https://www.ghostscript.com. 
+You can learn more about Ghostscript and download and install it from [their website](https://www.ghostscript.com). 
 
 ### Can I uninstall Ghostscript later?
 Yes you can install and uninstall Ghostscript easily, completely independently from FanLore.
