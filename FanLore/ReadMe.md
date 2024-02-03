@@ -1,4 +1,4 @@
-# FanLore
+﻿# FanLore
 by Nigel Spencer 2024
 
 ## Getting Started
@@ -19,7 +19,7 @@ in FanLore.
 You don't need to install Ghostscript in order to extract cover art images from your PDF content, only for producing 
 high resolution images of PDF pages.
 
-The most common use case would be to generate an image from a H�rn atlas map that you have purchased.
+The most common use case would be to generate an image from a Hârn atlas map that you have purchased.
 You could do this yourself, but using Ghostscript in FanLore will make this process much easier.
 
 ### How do I install Ghostscript?
