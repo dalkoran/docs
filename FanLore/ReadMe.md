@@ -1,4 +1,4 @@
-﻿<image src="/docs/AI_Logo.png" height="150"/>
+﻿<image src="docs/AI_Logo.png" height="150"/>
 
 # FanLore
 by Nigel Spencer 2024
