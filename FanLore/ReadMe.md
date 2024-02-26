@@ -29,3 +29,7 @@ You can learn more about Ghostscript and download and install it from [their web
 
 ### Can I uninstall Ghostscript later?
 Yes you can install and uninstall Ghostscript easily, completely independently from FanLore.
+
+## More details
+* [Screenshots](docs/Screenshots.md)
+* [Privacy Policy](privacy/ReadMe.md)
