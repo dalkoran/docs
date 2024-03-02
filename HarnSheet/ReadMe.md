@@ -209,12 +209,6 @@ for the cover and Columbia Games logo, but everything else is rendered. All part
 surfaces use DataTemplates to show titles, prefixes, suffixes, book numbers, tags, appendix details (back cover)
 and a portion of the first page.
 
-![Tharda Book 1](./docs/Tharda_Book_1.png)
-![Tharda Book 1](./docs/Tharda_Book_2.png)
-![Tharda Book 1](./docs/Tharda_Book_3.png)
-![Tharda Book 1](./docs/Tharda_Book_4.png)
-![Tharda Book 1](./docs/Tharda_Book_5.png)
-
 ### Load/Save Game Rule Data from Files
 All game data is currently hard-coded into the application. However, there is also an ability to
 override the base data with revised/additional information. This means that new weapons, armour,
@@ -244,8 +238,6 @@ of 20 to 60 degress north on the world of Kethira. The map can be zoomed, and th
 
 Tharda is a Republic on the remote island of Harn, off the west coast of Lythia.
 
-![Lythia with Tharda Selected](./docs/Map_Lythia_Tharda.png)
-
 Map coordinates (Latitude and sort-of-Longitude) are translated to/from screen coordinates. The numbers
 above the map show the mouse cursors current coordinates, the zoom factor and the width and height of the 
 currently displayed map area in kilometres.
@@ -256,49 +248,36 @@ It's worth nothings that he map surface isn't constrained to showing HarnWorld m
 map layers and tiles can be created would work equally well.
 
 ```csharp
-public HarnMap(IEnumerable<IMapLocation>? locations = null)
-    : base(new MapRectangle(new MapCoordinate(0, -60), new MapCoordinate(56, -20)), locations ?? Enumerable.Empty<IMapLocation>())
-{
-    this.AspectRatio = 447.0 / 433.0; // Harn map squares aren't quite square
-
-    // A layer for the continent
-    var lythiaMapLayer = new MapLayer("Lythia") { MinZoom = 0, MaxZoom = 2, ImagePath = "Images", Bounds = this.Bounds };
-    lythiaMapLayer.MapTiles = new[] { new MapTile("Lythia", 0, -60, HarnDistance.FromLatitude(56m), HarnDistance.FromLatitude(40)) };
-    this.Layers.Add(lythiaMapLayer);
-
-    // Define the area in which the island of Harn is located
-    var harnRegionBounds = new MapRectangle(0, -50, HarnDistance.FromLatitude(14m), HarnDistance.FromLatitude(10m));
-
-    // The poetic map layer, a single image
-    var poeticMapTile = new MapLayer("Poetic Map") { MinZoom = 0.5, MaxZoom = 2, ImagePath = "Images", Bounds = harnRegionBounds };
-    poeticMapTile.MapTiles = new[] { new MapTile("HarnMap_Poetic", 0, -50.9, HarnDistance.FromLatitude(15m), HarnDistance.FromLatitude(11.3m)) };
-    this.Layers.Add(poeticMapTile);
-
-    // The famous hand-drawn Harn map, broken into 14 x 10 tiles, name 5001A_[A-N][1-10].[png|jpg]
-    var artisticMapTilesLayer = new MapLayer("5001A Map Tiles") { MinZoom = 1, MaxZoom = 10, Bounds = harnRegionBounds };
-    var mapTiles = new List<IMapReference>();
-    for (var x = harnRegionBounds.TopLeft.Longitude; x < harnRegionBounds.BottomRight.Longitude; x++)
-    {
-        for (var y = harnRegionBounds.TopLeft.Latitude; y < harnRegionBounds.BottomRight.Longitude; y++)
+        public HarnMap(IEnumerable<IMapLocation>? locations = null)
+            : base("Hârn", new MapRectangle(new MapCoordinate(0, -50), new MapCoordinate(14, -40)), locations ?? Enumerable.Empty<IMapLocation>())
         {
-            mapTiles.Add(new MapTile("5001A", x, y, HarnDistance.FromLatitude(1m), HarnDistance.FromLatitude(1m)));
-        }
-    }
-    artisticMapTilesLayer.MapTiles = mapTiles;
-    this.Layers.Add(artisticMapTilesLayer);
+            this.AspectRatio = 447.0 / 433.0; // Harn map squares aren't quite square
 
-    // The high fidelity contour "atlas" maps, broken into 14 x 10 tiles, name 5000_[A-N][1-10].[jpg|png]
-    var atlasMapTilesLayer = new MapLayer("5000 Map Tiles") { MinZoom = 3, MaxZoom = 100, Bounds = harnRegionBounds };
-    var atlasMapTiles = new List<IMapReference>();
-    for (var x = harnRegionBounds.TopLeft.Longitude; x < harnRegionBounds.BottomRight.Longitude; x++)
-    {
-        for (var y = harnRegionBounds.TopLeft.Latitude; y < harnRegionBounds.BottomRight.Longitude; y++)
-        {
-            atlasMapTiles.Add(new MapTile("5000", x, y, HarnDistance.FromLatitude(1m), HarnDistance.FromLatitude(1m)));
+            // Define the area in which the island of Harn is located
+            var harnRegionBounds = new MapRectangle(0, -50, HarnDistance.FromLatitude(14m), HarnDistance.FromLatitude(10m));
+
+            // The poetic map layer, a single image
+            var poeticMapTileLayer = new ImageMapLayer("Poetic Map") { MinZoom = 0.5, MaxZoom = 2, ImagePath = string.Empty, Bounds = harnRegionBounds }
+                .WithTile("HarnMap_Poetic", new MapRectangle(0, -50.9, HarnDistance.FromLatitude(15m), HarnDistance.FromLatitude(11.3m)));
+            this.Layers.Add(poeticMapTileLayer);
+
+            this.Layers.Add(CreateHarn5101ALayer());
+
+            var moduleMapLayer = new ImageMapLayer("Module Maps") { MinZoom = 1.5, MaxZoom = 20, ImagePath = string.Empty, Bounds = harnRegionBounds }
+                .WithTile("Orbaal", new MapRectangle(6.05, -50.5, HarnDistance.FromLatitude(4.893m), HarnDistance.FromLatitude(3.88m)));
+            this.Layers.Add(moduleMapLayer);
+
+            this.Layers.Add(CreateHarn5000Layer());
+            this.Layers.Add(new GridMapLayer("Latitude/Longitude Grid", HarnDistance.FromLatitude(1), HarnDistance.FromLatitude(1)) { MinZoom = 1.0, MaxZoom = 20, Enabled = false });
+            this.Layers.Add(new MapEdgeLayer("Ruler", HarnDistance.FromLatitude(1), HarnDistance.FromLatitude(1)) { MinZoom = 0.1, MaxZoom = 20.0 });
+            this.Layers.Add(new HexMapLayer("5 League Hexes", HarnDistance.FromKilometres(20), AspectRatio = 1.03923048) { MinZoom = 1.5, MaxZoom = 20, Enabled = false });
+
+            this.Layers.Add(new ImageMapLayer("Tashal", imagePath: string.Empty) { Bounds = harnRegionBounds, MinZoom = 30 }
+                .WithTile("Tashal", new MapRectangle(9.854, -45.485, HarnDistance.FromFeet(2000), HarnDistance.FromFeet(3000)))
+                .WithTile("Caer Elend", new MapRectangle(9.85585, -45.48235, HarnDistance.FromFeet(190), HarnDistance.FromFeet(190)), opacity: 0.9, rotation: 32));
+
+            this.ApplyDefaultLayerSorting();
         }
-    }
-    atlasMapTilesLayer.MapTiles = atlasMapTiles;
-    this.Layers.Add(atlasMapTilesLayer);
 ```
 
 #### Map Tiling/Layers
@@ -314,21 +293,10 @@ Here is a tile from the Harn map.
 This is the corresponding tile from the next layer down. Note that in this case there is a single tile at each layer
 but generally the expectation would be to have more tiles as the zoom increases.
 
-![Harn 5001 Tile](./HarnSheet.Client.Wpf/Resources/Images/MapTiles/5000_E7.jpg)
-
 This would be the run-time generated "blend" between the two maps
-
-![Harn 5001 Blend](./docs/Map_E7_Blend.jpg)
 
 Another shot here shows the top edge of the Harn map focused on the castle at Leriel, 
 the blurry section above is from the continent level map.
-
-![Location Overlays](./docs/Map_Harn_Leriel.png)
-
-In this shot you can see that high fidelity maps are available only for a portion of the map. The bottom
-left area retains the higher layer imagery.
-
-![Location Overlays](./docs/Map_NorthHarn_Lerial.png)
 
 #### Map Zooming
 The map is zoomed in and out by scrolling using the mouse wheel, or for a touch screen device 
@@ -336,15 +304,9 @@ pinch to zoom is also enabled.
 
 Here we see Tharda more clearly defined as an area on Harn's western side.
 
-![Location Overlays](./docs/Map_Harn_Tharda.png)
-
 Zooming further we see the two map layers blending together.
 
-![Location Overlays](./docs/Map_WestHarn_Tharda.png)
-
 Until we get down to the highest fidelity maps.
-
-![Location Overlays](./docs/Map_Harn_Golotha.png)
 
 #### Map Panning
 The map can be panned in any direction by holding the left mouse button (or touch finger) and
@@ -365,18 +327,14 @@ In the example below Geldeheim is the royal seat of the Kindgom of Orbaal. As su
 in the Kingdom owe fealty to that clan. The various colours represent the great clans within the
 Kingdom.
 
-![Location Overlays](./docs/Map_Harn_Geldeheim.png)
-
 In this example Quiam is a much smaller settlement than Geldeheim. Only three small manors owe
 fealty to that clan and are highlighted here. The nearby seat of Tandir is the head of the great clan
 to which Quiam is aligned with. At the bottom left of the screen you can see full details for the
 manor/township of Quiam.
-
-![Location Overlays](./docs/Map_Harn_Quiam.png)
 
 #### Map Route Overlays
 Several of the modules represent major trade routes across the island of Harn. When selecting those
 modules the trade route will be displayed as a dashed line. Major settlements along the route will also
 be highlighted.
 
-![Fur Road](./docs/Map_Harn_FurRoad.png)
+
