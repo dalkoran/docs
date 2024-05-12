@@ -43,3 +43,17 @@ In addition to creating character you can build your own custom maps. Each map c
 <a href="Screenshot - Map Editor.jpg">
     <image src="Screenshot - Map Editor.jpg" width="600px"/>
 </a>
+
+## Other screens
+
+Ability to use keyword search (including and/or, wildcard and fuzzy matching) across all PDF content.
+
+<a href="ScreenShot - Document Search.png">
+    <image src="ScreenShot - Document Search.png">
+</a>
+
+NPC character formatting. Spot the unfinished attribute in the screenshot below that clearly doesn't match with the character profile in question.
+
+<a href="ScreenShot - NPC Print Format.png">
+    <image src="ScreenShot - NPC Print Format.png">
+</a>
