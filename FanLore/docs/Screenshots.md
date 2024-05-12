@@ -57,3 +57,9 @@ NPC character formatting. Spot the unfinished attribute in the screenshot below 
 <a href="ScreenShot - NPC Print Format.png">
     <image src="ScreenShot - NPC Print Format.png">
 </a>
+
+Injury tracking:
+
+<a href="ScreenShot - Injuries.png">
+    <image src="ScreenShot - Injuries.png">
+</a>
