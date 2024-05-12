@@ -12,6 +12,7 @@ These screens have no intrinsic knowledge of  any game world or system.
 * **Map Editor** - Defines maps that can be used within the *Map Viewer* (see below). Each map has a name, area and any number of layers. Each layer can be comprised of any number of map tiles and has an associated zoom range at which its visible. This allows overview maps which will then fade out as the map is zoomed in to reveal high definition content from other layers. In addition to image tiles there are various other map layer presets such as grid lines and hexes. Maps definitions can be saved to the users preferred folder.
 * **Map Viewer** - Render the maps defined by the *Map Editor*. The viewer allows the maps to be zoomed and panned via the mouse. When used in conjunction with *Location Selector* it also supports jumping to known locations and showing addition location details.
 * **Explore Content** - Allows the user to browse the PDF content that was discovered by the *Welcome/Setup* screen. Only basic information about the content is displayed, such as page count, and extracted images, along with a 3D rendering of the content as a book. The original PDFs can be launched from this screen in the users preferred PDF reading application (e.g. Acrobat Reader, default web browser etc.).
+* **Settings** - Standard screen for choosing user preferences such as light/dark mode and default locations to store content produced by the app (like generated characters).
 
 ### Hârn Specific
 These screens are designed around some aspect of the Hârn World system.
